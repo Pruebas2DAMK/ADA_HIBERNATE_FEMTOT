@@ -1,11 +1,21 @@
 package ad.orm.hibernate.domain;
 
-public class Contacto_cliente {
+import javax.persistence.*;
 
-    private int dni_cliente;
+@Entity
+@Table(name = "contacto_cliente")
+public class Contacto_cliente {
+    @Id
+    @OneToOne
+    @JoinColumn(name = "dni_cliente")
+    private Cliente dni_cliente;
+    @Column(name = "telefono")
     private int telefono;
+    @Column(name = "email")
     private String email;
+    @Column(name = "poblacion")
     private String poblacion;
+    @Column(name = "direccion")
     private String direccion;
 
     //********CONSTRUCTOR********//
@@ -25,10 +35,10 @@ public class Contacto_cliente {
 
     //********SETTER&GETTER********//
 
-    public int getDni_cliente() {
+    public Cliente getDni_cliente() {
         return dni_cliente;
     }
-    public void setDni_cliente(int dni_cliente) {
+    public void setDni_cliente(Cliente dni_cliente) {
         this.dni_cliente = dni_cliente;
     }
     public int getTelefono() {
@@ -61,7 +71,7 @@ public class Contacto_cliente {
 
     @Override
     public String toString() {
-        return dni_cliente + " " + telefono + " " +
+        return dni_cliente.getCod_cliente() + " " + telefono + " " +
                 email + " " + poblacion + " " + direccion;
     }
 }

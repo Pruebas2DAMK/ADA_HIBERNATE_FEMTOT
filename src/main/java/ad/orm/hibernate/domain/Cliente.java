@@ -1,10 +1,20 @@
 package ad.orm.hibernate.domain;
 
-public class Cliente {
+import javax.persistence.*;
+import java.util.List;
 
+@Entity
+@Table(name = "cliente")
+public class Cliente {
+    @Id
+    @Column (name = "cod_cliente")
    private int cod_cliente;
+    @Column (name = "nombre")
    private String nombre;
+    @Column (name = "apellido")
    private String apellido;
+    @OneToMany(mappedBy = "cliente",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Trabajo> trabajos;
 
    //********CONSTRUCTOR********//
 

@@ -1,26 +1,51 @@
 package ad.orm.hibernate.domain;
 
+import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+@Entity
+@Table(name = "trabajo")
 public class Trabajo {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int cod_trabajo;
-    private int cod_clienteFK;
+    @ManyToOne
+    @JoinColumn(name = "cod_clienteFK")
+    private Cliente cod_clienteFK;
+    @Column(name = "descripcion")
     private String descripcion;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipo")
     private Tipo tipo;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "estado")
     private Estado estado;
-    //TODO : Averiguar los ENUM y sus problemas y la diferencia entre conversion Tinyint - Boolean
+    @Column(columnDefinition = "TINYINT",name = "pagado")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
     private boolean pagado;
+    @Column(columnDefinition = "TINYINT",name = "presupuestado")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
     private boolean presupuestado;
+    //TODO :  fecha creacion mirar si crea por defecto o colocarlo en constructor
+    @Column(name = "fecha_creacion")
     private Date fecha_creacion;
+    @Column(name = "fecha_inicio")
     private Date fecha_inicio;
+    @Column(name = "fecha_fin")
     private Date fecha_fin;
+    //Bidireccional M:N
+    @OneToMany(mappedBy = "producto")
+    private Set<Trabajo_producto> trabajo_producto = new HashSet<>();
 
     //********CONSTRUCTOR********//
 
     public Trabajo() { }
 
-    public Trabajo(int cod_clienteFK, String descripcion, Tipo tipo,Estado estado, boolean pagado,boolean presupuestado, Date fecha_creacion, Date fecha_inicio, Date fecha_fin) {
+    public Trabajo(Cliente cod_clienteFK, String descripcion, Tipo tipo,Estado estado, boolean pagado,boolean presupuestado, Date fecha_creacion, Date fecha_inicio, Date fecha_fin) {
         this.cod_clienteFK = cod_clienteFK;
         this.descripcion = descripcion;
         this.tipo = tipo;
@@ -40,10 +65,10 @@ public class Trabajo {
     public void setCod_trabajo(int cod_trabajo) {
         this.cod_trabajo = cod_trabajo;
     }
-    public int getCod_clienteFK() {
+    public Cliente getCod_clienteFK() {
         return cod_clienteFK;
     }
-    public void setCod_clienteFK(int cod_clienteFK) {
+    public void setCod_clienteFK(Cliente cod_clienteFK) {
         this.cod_clienteFK = cod_clienteFK;
     }
     public String getDescripcion() {
@@ -97,7 +122,7 @@ public class Trabajo {
 
     @Override
     public String toString() {
-        return cod_trabajo + " " + cod_clienteFK +
+        return cod_trabajo + " " + cod_clienteFK.getCod_cliente() +
                 " " + descripcion + " " + tipo + " " + estado +
                 " " + pagado + " " + presupuestado + " " + fecha_creacion +
                 " " + fecha_inicio + " " + fecha_fin;

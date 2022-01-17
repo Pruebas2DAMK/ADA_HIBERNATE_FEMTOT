@@ -1,17 +1,29 @@
 package ad.orm.hibernate.domain;
 
-public class Proovedor {
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
+public class Proovedor {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int cod_proovedor;
+    @Column(name = "nombre")
     private String nombre;
+    @Column(name = "poblacion")
     private String poblacion;
+    @Column(name = "telefono")
     private int telefono;
+    //Bidirecional M:N
+    @OneToMany(mappedBy = "producto")
+    private Set<Producto_proovedor> proovedor_producto = new HashSet<>();
 
     //********CONSTRUCTOR********//
 
     public Proovedor() { }
 
-    public Proovedor(String nombre, String poblacion, int telefono) {
+    public Proovedor(int cod_proovedor,String nombre, String poblacion, int telefono) {
+        this.cod_proovedor = cod_proovedor;
         this.nombre = nombre;
         this.poblacion = poblacion;
         this.telefono = telefono;

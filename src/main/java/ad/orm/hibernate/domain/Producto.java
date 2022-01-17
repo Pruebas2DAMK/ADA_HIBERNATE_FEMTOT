@@ -1,16 +1,30 @@
 package ad.orm.hibernate.domain;
 
-public class Producto {
-    //TODO : Las relaciones M:N mantienen datos, averiguar si en este sistema hay que generar el POJO en estos casos, de momento no existen, pero si que habra que hacerlas
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
+@Entity
+@Table(name = "producto")
+public class Producto {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "cod_producto")
     private int cod_producto;
+    @Column(name = "nombre")
     private String nombre;
+    //Bidirecional M:N
+    @OneToMany(mappedBy = "proovedor")
+    private Set<Producto_proovedor> producto_proovedor = new HashSet<>();
+    @OneToMany(mappedBy = "trabajo")
+    private Set<Trabajo_producto> producto_trabajo = new HashSet<>();
 
     //********CONSTRUCTOR********//
 
     public Producto() { }
 
-    public Producto(String nombre) {
+    public Producto(int cod_producto,String nombre) {
+        this.cod_producto = cod_producto;
         this.nombre = nombre;
     }
 
