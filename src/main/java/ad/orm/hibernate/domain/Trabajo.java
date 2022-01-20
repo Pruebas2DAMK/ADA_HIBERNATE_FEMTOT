@@ -12,10 +12,10 @@ public class Trabajo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int cod_trabajo;
-
     @ManyToOne
     @JoinColumn(name = "cod_clienteFK")
     private Cliente cod_clienteFK;
+
 
     @Column(name = "descripcion")
     private String descripcion;
@@ -39,17 +39,20 @@ public class Trabajo implements Serializable {
     @Column(name = "fecha_fin")
     private Date fecha_fin;
     // TO DO : Many to Many
-
+/*
     //ManyToMany Trabajo_Producto
     @ManyToMany(mappedBy = "trabajos",fetch = FetchType.EAGER,cascade = {CascadeType.ALL})
     private List<Producto> productos = new ArrayList<Producto>();
 
+ */
+    @OneToMany(mappedBy = "trabajo")
+    List<trabajo_producto>productos = new ArrayList<>();
     //********CONSTRUCTOR********//
 
     public Trabajo() { }
 
     public Trabajo(Cliente cod_clienteFK, String descripcion, Tipo tipo,Estado estado, boolean pagado,boolean presupuestado, Date fecha_creacion, Date fecha_inicio, Date fecha_fin) {
-        this.cod_clienteFK = cod_clienteFK;
+        //this.cod_clienteFK = cod_clienteFK;
         this.descripcion = descripcion;
         this.tipo = tipo;
         this.estado = estado;

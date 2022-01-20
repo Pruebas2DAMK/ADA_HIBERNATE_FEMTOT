@@ -1,12 +1,13 @@
 package ad.orm.hibernate.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "cliente")
-public class Cliente {
+public class Cliente implements Serializable {
     @Id
     @Column (name = "cod_cliente")
    private int cod_cliente;

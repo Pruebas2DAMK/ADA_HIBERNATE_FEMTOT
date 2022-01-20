@@ -1,10 +1,11 @@
 package ad.orm.hibernate.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "contacto_cliente")
-public class Contacto_cliente {
+public class Contacto_cliente implements Serializable {
     @Id
     @OneToOne
     @JoinColumn(name = "dni_cliente")

@@ -17,7 +17,7 @@ public class Producto implements Serializable {
     @Column(name = "nombre")
     private String nombre;
     //TO DO: Many to Many x 2
-
+/*
     //ManyToMany producto_proovedor
     @ManyToMany(mappedBy = "proovedorToProductos",fetch = FetchType.EAGER,cascade = {CascadeType.ALL})
     private List<Trabajo> trabajosToProovedor = new ArrayList<Trabajo>();
@@ -30,6 +30,10 @@ public class Producto implements Serializable {
             inverseJoinColumns =@JoinColumn(name = "cod_trabajo")
     )
     private List<Trabajo> trabajos = new ArrayList<Trabajo>();
+
+ */
+    @OneToMany(mappedBy = "producto")
+    List<trabajo_producto>trabajos = new ArrayList<>();
 
 
 
