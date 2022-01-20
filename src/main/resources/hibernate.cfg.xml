@@ -17,7 +17,5 @@
         <mapping class="ad.orm.hibernate.domain.Proovedor"></mapping>
         <mapping class="ad.orm.hibernate.domain.Trabajo"></mapping>
         <mapping class="ad.orm.hibernate.domain.Contacto_cliente"></mapping>
-        <mapping class="ad.orm.hibernate.domain.Trabajo_producto"></mapping>
-        <mapping class="ad.orm.hibernate.domain.Producto_proovedor"></mapping>
     </session-factory>
 </hibernate-configuration>

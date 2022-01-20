@@ -1,10 +1,13 @@
 package ad.orm.hibernate.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-public class Proovedor {
+public class Proovedor implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int cod_proovedor;
@@ -14,9 +17,15 @@ public class Proovedor {
     private String poblacion;
     @Column(name = "telefono")
     private int telefono;
-    //Bidirecional M:N
-    @OneToMany(mappedBy = "producto")
-    private Set<Producto_proovedor> proovedor_producto = new HashSet<>();
+    // TO DO : Many to Many
+    //ManyToMany producto_proovedor
+    @ManyToMany(fetch = FetchType.EAGER,cascade = {CascadeType.ALL})
+    @JoinTable(
+            name = "producto_proovedor",
+            joinColumns = @JoinColumn(name = "cod_proovedor"),
+            inverseJoinColumns =@JoinColumn(name = "cod_producto")
+    )
+    private List<Producto>proovedorToProductos = new ArrayList<>();
 
     //********CONSTRUCTOR********//
 

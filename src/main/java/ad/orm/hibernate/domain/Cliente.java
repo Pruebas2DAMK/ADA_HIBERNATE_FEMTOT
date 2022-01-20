@@ -1,6 +1,7 @@
 package ad.orm.hibernate.domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -13,8 +14,8 @@ public class Cliente {
    private String nombre;
     @Column (name = "apellido")
    private String apellido;
-    @OneToMany(mappedBy = "cliente",cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<Trabajo> trabajos;
+    @OneToMany(mappedBy = "cod_clienteFK",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Trabajo> trabajos = new ArrayList<>();
 
    //********CONSTRUCTOR********//
 

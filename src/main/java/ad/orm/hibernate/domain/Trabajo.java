@@ -3,19 +3,20 @@ package ad.orm.hibernate.domain;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.io.Serializable;
+import java.util.*;
 
 @Entity
 @Table(name = "trabajo")
-public class Trabajo {
+public class Trabajo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int cod_trabajo;
+
     @ManyToOne
     @JoinColumn(name = "cod_clienteFK")
     private Cliente cod_clienteFK;
+
     @Column(name = "descripcion")
     private String descripcion;
     @Enumerated(EnumType.STRING)
@@ -37,9 +38,11 @@ public class Trabajo {
     private Date fecha_inicio;
     @Column(name = "fecha_fin")
     private Date fecha_fin;
-    //Bidireccional M:N
-    @OneToMany(mappedBy = "producto")
-    private Set<Trabajo_producto> trabajo_producto = new HashSet<>();
+    // TO DO : Many to Many
+
+    //ManyToMany Trabajo_Producto
+    @ManyToMany(mappedBy = "trabajos",fetch = FetchType.EAGER,cascade = {CascadeType.ALL})
+    private List<Producto> productos = new ArrayList<Producto>();
 
     //********CONSTRUCTOR********//
 
