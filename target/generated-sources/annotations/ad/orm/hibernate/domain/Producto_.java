@@ -9,12 +9,12 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(Producto.class)
 public abstract class Producto_ {
 
+	public static volatile ListAttribute<Producto, Trabajo_producto> trabajosToProductos;
 	public static volatile SingularAttribute<Producto, Integer> cod_producto;
-	public static volatile ListAttribute<Producto, trabajo_producto> trabajos;
 	public static volatile SingularAttribute<Producto, String> nombre;
 
+	public static final String TRABAJOS_TO_PRODUCTOS = "trabajosToProductos";
 	public static final String COD_PRODUCTO = "cod_producto";
-	public static final String TRABAJOS = "trabajos";
 	public static final String NOMBRE = "nombre";
 
 }

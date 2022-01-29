@@ -16,10 +16,10 @@ public abstract class Trabajo_ {
 	public static volatile SingularAttribute<Trabajo, Estado> estado;
 	public static volatile SingularAttribute<Trabajo, Boolean> pagado;
 	public static volatile SingularAttribute<Trabajo, Date> fecha_inicio;
+	public static volatile ListAttribute<Trabajo, Trabajo_producto> productosToTrabajos;
 	public static volatile SingularAttribute<Trabajo, Integer> cod_trabajo;
 	public static volatile SingularAttribute<Trabajo, Date> fecha_fin;
 	public static volatile SingularAttribute<Trabajo, Date> fecha_creacion;
-	public static volatile ListAttribute<Trabajo, trabajo_producto> productos;
 	public static volatile SingularAttribute<Trabajo, Boolean> presupuestado;
 
 	public static final String DESCRIPCION = "descripcion";
@@ -28,10 +28,10 @@ public abstract class Trabajo_ {
 	public static final String ESTADO = "estado";
 	public static final String PAGADO = "pagado";
 	public static final String FECHA_INICIO = "fecha_inicio";
+	public static final String PRODUCTOS_TO_TRABAJOS = "productosToTrabajos";
 	public static final String COD_TRABAJO = "cod_trabajo";
 	public static final String FECHA_FIN = "fecha_fin";
 	public static final String FECHA_CREACION = "fecha_creacion";
-	public static final String PRODUCTOS = "productos";
 	public static final String PRESUPUESTADO = "presupuestado";
 
 }

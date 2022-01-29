@@ -1,5 +1,7 @@
 package ad.orm.hibernate.domain;
 
+import com.mysql.cj.xdevapi.Client;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -27,7 +29,8 @@ public class Contacto_cliente implements Serializable {
     En principio vamos a suponer que si puede existir un cliente sin contacto pero un contacto depende totalmente de la existencia del cliente
     por lo que el contacto recibe su identificador de la existencia del cliente.
      */
-    public Contacto_cliente(int telefono, String email, String poblacion, String direccion) {
+    public Contacto_cliente(Cliente dni_cliente, int telefono, String email, String poblacion, String direccion) {
+        this.dni_cliente = dni_cliente;
         this.telefono = telefono;
         this.email = email;
         this.poblacion = poblacion;

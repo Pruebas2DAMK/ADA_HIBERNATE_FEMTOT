@@ -17,15 +17,11 @@ public class Proovedor implements Serializable {
     private String poblacion;
     @Column(name = "telefono")
     private int telefono;
-    // TO DO : Many to Many
-    //ManyToMany producto_proovedor
-    @ManyToMany(fetch = FetchType.EAGER,cascade = {CascadeType.ALL})
-    @JoinTable(
-            name = "producto_proovedor",
-            joinColumns = @JoinColumn(name = "cod_proovedor"),
-            inverseJoinColumns =@JoinColumn(name = "cod_producto")
-    )
-    private List<Producto>proovedorToProductos = new ArrayList<>();
+
+   /* //ManyToMany Producto_proovedor
+    @OneToMany(mappedBy = "proovedorToProducto")
+    List<Producto_proovedor> productosToProovedores = new ArrayList<>();
+    */
 
     //********CONSTRUCTOR********//
 

@@ -3,9 +3,7 @@ package ad.orm.hibernate.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "producto")
@@ -17,28 +15,18 @@ public class Producto implements Serializable {
     @Column(name = "nombre")
     private String nombre;
     //TO DO: Many to Many x 2
-/*
-    //ManyToMany producto_proovedor
-    @ManyToMany(mappedBy = "proovedorToProductos",fetch = FetchType.EAGER,cascade = {CascadeType.ALL})
-    private List<Trabajo> trabajosToProovedor = new ArrayList<Trabajo>();
 
     //ManyToMany Trabajo_Producto
-    @ManyToMany(fetch = FetchType.EAGER,cascade = {CascadeType.ALL})
-    @JoinTable(
-            name = "trabajo_producto",
-            joinColumns = @JoinColumn(name = "cod_producto"),
-            inverseJoinColumns =@JoinColumn(name = "cod_trabajo")
-    )
-    private List<Trabajo> trabajos = new ArrayList<Trabajo>();
 
- */
-    @OneToMany(mappedBy = "producto")
-    List<trabajo_producto>trabajos = new ArrayList<>();
+    @OneToMany(mappedBy = "productoToTrabajo")
+    List<Trabajo_producto> trabajosToProductos = new ArrayList<>();
 
-
+   /*
+    @OneToMany(mappedBy = "productoToProovedor") //TODO El fallo esta en la relacion producto_proveedor
+    List<Producto_proovedor> proovedoresToProductos = new ArrayList<>();
+    */
 
     //********CONSTRUCTOR********//
-
     public Producto() { }
 
     public Producto(int cod_producto,String nombre) {
