@@ -1,6 +1,7 @@
 package ad.orm.hibernate.domain;
 
 import com.mysql.cj.xdevapi.Client;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -24,11 +25,7 @@ public class Contacto_cliente implements Serializable {
     //********CONSTRUCTOR********//
 
     public Contacto_cliente(){ }
-    //TODO : Solucionar duda de quien recibe el PK de que tabla automaticamente
-    /*
-    En principio vamos a suponer que si puede existir un cliente sin contacto pero un contacto depende totalmente de la existencia del cliente
-    por lo que el contacto recibe su identificador de la existencia del cliente.
-     */
+
     public Contacto_cliente(Cliente dni_cliente, int telefono, String email, String poblacion, String direccion) {
         this.dni_cliente = dni_cliente;
         this.telefono = telefono;

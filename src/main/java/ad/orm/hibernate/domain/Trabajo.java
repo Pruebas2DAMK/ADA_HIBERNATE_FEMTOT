@@ -4,6 +4,8 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Entity
@@ -48,16 +50,14 @@ public class Trabajo implements Serializable {
 
     public Trabajo() { }
 
-    public Trabajo(Cliente cod_clienteFK, String descripcion, Tipo tipo,Estado estado, boolean pagado,boolean presupuestado, Date fecha_creacion, Date fecha_inicio, Date fecha_fin) {
+    public Trabajo(Cliente cod_clienteFK, String descripcion, Tipo tipo,Estado estado, boolean pagado,boolean presupuestado) {
         this.cod_clienteFK = cod_clienteFK;
         this.descripcion = descripcion;
         this.tipo = tipo;
         this.estado = estado;
         this.pagado = pagado;
         this.presupuestado = presupuestado;
-        this.fecha_creacion = fecha_creacion;
-        this.fecha_inicio = fecha_inicio;
-        this.fecha_fin = fecha_fin;
+        this.fecha_creacion = tiempoActual();
     }
 
     //********SETTER&GETTER********//
@@ -121,6 +121,20 @@ public class Trabajo implements Serializable {
     }
     public void setPresupuestado(boolean presupuestado) {
         this.presupuestado = presupuestado;
+    }
+
+    public List<Trabajo_producto> getProductosToTrabajos() {
+        return productosToTrabajos;
+    }
+
+    public void setProductosToTrabajos(List<Trabajo_producto> productosToTrabajos) {
+        this.productosToTrabajos = productosToTrabajos;
+    }
+
+    public static Date tiempoActual(){
+        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss");
+        Date date = new Date(System.currentTimeMillis());
+        return date;
     }
 
     @Override

@@ -6,7 +6,7 @@ import ad.orm.hibernate.service.ClienteService;
 public class EliminarPorId {
     public static void main(String[] args) {
         ClienteService clienteService = new ClienteService();
-        Cliente cliente = clienteService.getClienteById(89237);
+        Cliente cliente = clienteService.getClienteById(9889998);
         System.out.println(cliente.toString());
         clienteService.delete(cliente.getCod_cliente()); //it works
     }

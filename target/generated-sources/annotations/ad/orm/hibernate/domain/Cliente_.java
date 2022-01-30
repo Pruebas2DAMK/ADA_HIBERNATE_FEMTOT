@@ -12,11 +12,13 @@ public abstract class Cliente_ {
 	public static volatile SingularAttribute<Cliente, String> apellido;
 	public static volatile ListAttribute<Cliente, Trabajo> trabajos;
 	public static volatile SingularAttribute<Cliente, Integer> cod_cliente;
+	public static volatile SingularAttribute<Cliente, Contacto_cliente> contacto_cliente;
 	public static volatile SingularAttribute<Cliente, String> nombre;
 
 	public static final String APELLIDO = "apellido";
 	public static final String TRABAJOS = "trabajos";
 	public static final String COD_CLIENTE = "cod_cliente";
+	public static final String CONTACTO_CLIENTE = "contacto_cliente";
 	public static final String NOMBRE = "nombre";
 
 }

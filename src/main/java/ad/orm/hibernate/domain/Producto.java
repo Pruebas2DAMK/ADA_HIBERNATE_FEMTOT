@@ -29,8 +29,7 @@ public class Producto implements Serializable {
     //********CONSTRUCTOR********//
     public Producto() { }
 
-    public Producto(int cod_producto,String nombre) {
-        this.cod_producto = cod_producto;
+    public Producto(String nombre) {
         this.nombre = nombre;
     }
 
@@ -49,6 +48,13 @@ public class Producto implements Serializable {
         this.nombre = nombre;
     }
 
+    public List<Trabajo_producto> getTrabajosToProductos() {
+        return trabajosToProductos;
+    }
+
+    public void setTrabajosToProductos(List<Trabajo_producto> trabajosToProductos) {
+        this.trabajosToProductos = trabajosToProductos;
+    }
     //*******TOSTRING********//
 
     @Override

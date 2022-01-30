@@ -17,4 +17,27 @@ public class Trabajo_producto implements Serializable {
     public Trabajo_producto() {
     }
 
-  }
+ public Trabajo getTrabajoToProducto() {
+  return trabajoToProducto;
+ }
+
+ public void setTrabajoToProducto(Trabajo trabajoToProducto) {
+  this.trabajoToProducto = trabajoToProducto;
+ }
+
+ public Producto getProductoToTrabajo() {
+  return productoToTrabajo;
+ }
+
+ public void setProductoToTrabajo(Producto productoToTrabajo) {
+  this.productoToTrabajo = productoToTrabajo;
+ }
+
+ public int getCantidad() {
+  return cantidad;
+ }
+
+ public void setCantidad(int cantidad) {
+  this.cantidad = cantidad;
+ }
+}
